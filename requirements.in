@@ -1,0 +1,70 @@
+ActivityStream
+aiosmtpd
+beautifulsoup4
+Beaker
+beaker-session-jwt
+colander
+cryptography
+decorator
+EasyWidgets
+emoji
+faust-cchardet
+feedgenerator
+feedparser
+FormEncode
+GitPython
+html5lib
+Jinja2
+# Webob uses legacy-cgi and so our tests need it too for cgi.FieldStorage, maybe webob 2 will remove it?  https://github.com/Pylons/webob/pull/466
+legacy-cgi ; python_full_version >= '3.13'
+# for faster resp.html parsing in tests
+lxml
+Markdown
+markdown-checklist
+MarkupSafe
+Ming
+oauthlib
+paginate
+passlib
+Paste
+PasteDeploy
+PasteScript
+Pillow
+# profanity filter for feedback
+profanityfilter
+pyasynchat
+Pygments
+pymongo
+Pypeline[creole,markdown,textile,rst]
+pysolr
+python-dateutil
+python-magic
+python-oembed
+pytz
+qrcode
+regex-as-re-globally
+requests
+requests-oauthlib
+# for taskd proc name switching
+setproctitle
+six
+sxsdiff
+TimerMiddleware
+TurboGears2
+WebHelpers2
+WebOb
+werkzeug
+wrapt
+# testing
+mock
+ruff
+testfixtures
+WebTest
+pytest
+pytest-xdist
+pytest-sugar
+docutils
+
+# deployment
+gunicorn
+pre-commit

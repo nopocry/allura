@@ -1,0 +1,10 @@
+setup.cfg
+setup.py
+ForgeFiles.egg-info/PKG-INFO
+ForgeFiles.egg-info/SOURCES.txt
+ForgeFiles.egg-info/dependency_links.txt
+ForgeFiles.egg-info/entry_points.txt
+ForgeFiles.egg-info/top_level.txt
+ForgeFiles.egg-info/zip-safe
+forgefiles/__init__.py
+forgefiles/files_main.py

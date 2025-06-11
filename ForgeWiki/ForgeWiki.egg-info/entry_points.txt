@@ -1,0 +1,2 @@
+[allura]
+Wiki = forgewiki.wiki_main:ForgeWikiApp

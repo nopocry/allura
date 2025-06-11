@@ -1,0 +1,104 @@
+#       Licensed to the Apache Software Foundation (ASF) under one
+#       or more contributor license agreements.  See the NOTICE file
+#       distributed with this work for additional information
+#       regarding copyright ownership.  The ASF licenses this file
+#       to you under the Apache License, Version 2.0 (the
+#       "License")# you may not use this file except in compliance
+#       with the License.  You may obtain a copy of the License at
+#
+#         http://www.apache.org/licenses/LICENSE-2.0
+#
+#       Unless required by applicable law or agreed to in writing,
+#       software distributed under the License is distributed on an
+#       "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+#       KIND, either express or implied.  See the License for the
+#       specific language governing permissions and limitations
+#       under the License.
+
+default_stages: [pre-commit]
+repos:
+-   repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v5.0.0
+    hooks:
+    # general checks
+    -   id: check-xml
+    -   id: check-yaml
+    -   id: check-json
+        exclude: '.babelrc'
+    -   id: check-merge-conflict
+        fail_fast: true
+    # other checks
+    -   id: check-docstring-first
+        exclude: |
+            (?x)^(
+                Allura/allura/eventslistener.py|
+                Allura/allura/lib/.*|
+            )$
+
+
+-   repo: https://github.com/pre-commit/pygrep-hooks
+    rev: v1.10.0
+    hooks:
+    -   id: rst-backticks
+        exclude:
+          (?x)^(
+                Allura/docs/.*|
+                ForgeImporters/docs/.*
+          )$
+    -   id: rst-directive-colons
+    -   id: rst-inline-touching-normal
+
+# https://pre-commit.com/#pygrep
+# mirrors test_syntax.py tests.  TODO have test_syntax.py run `pre-commit run --all-files utcnow` etc
+-   repo: local
+    hooks:
+      # Use
+      # .utcnow() rather than .now()
+      # .utcfromtimestamp() rather than .fromtimestamp()
+      # calendar.timegm() rather than mktime()
+      - id: tz-functions
+        name: don't use local tz functions
+        language: pygrep
+        types: [python]
+        entry: '\.now\(|\.fromtimestamp\(|\.mktime\('
+# SCSS Syntax: could use placeholders instead of extending a class or tag directly
+      - id: scss_extend_pattern
+        name: search for scss invalid extend patterns in class elements
+        language: pygrep
+        types: [file, scss]
+        entry: '@extend [^%]((?![\/\/]\stest_scss_extend_pattern allow).)*$'
+        exclude: 'node_modules'
+
+-   repo: https://github.com/aristanetworks/j2lint
+    rev: f291b271118c524b9ecb0bb5df9f846345963469  # latest as of June 2024
+    hooks:
+    -   id: j2lint
+        types: [html]
+        args:
+          - --extensions
+          - html
+          # only check jinja-syntax-error and jinja-statements-no-tabs
+          - --ignore
+          - single-space-decorator
+          - operator-enclosed-by-spaces
+          - jinja-statements-indentation
+          - jinja-statements-single-space
+          - jinja-statements-delimiter
+          - single-statement-per-line
+          - jinja-variable-lower-case
+          - jinja-variable-format
+          - --
+
+- repo:  https://github.com/milin/giticket
+  rev: v1.4
+  hooks:
+  - id:  giticket
+    args: ['--mode=regex_match', '--format=[#{ticket}] {commit_msg}', '--regex=[0-9]{4,}']
+
+
+- repo: https://github.com/astral-sh/ruff-pre-commit
+  # Ruff version.
+  rev: v0.9.6
+  hooks:
+    - id: ruff
+      types: [python]

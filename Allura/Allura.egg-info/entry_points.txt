@@ -1,0 +1,91 @@
+[activitystream]
+aggregator = allura.model.timeline:Aggregator
+director = allura.model.timeline:Director
+storage = activitystream.storage.mingstorage:MingStorage
+
+[allura]
+admin = allura.ext.admin:AdminApp
+home = allura.ext.project_home:ProjectHomeApp
+profile = allura.ext.user_profile:UserProfileApp
+search = allura.ext.search:SearchApp
+
+[allura.auth]
+ldap = allura.lib.plugin:LdapAuthenticationProvider
+local = allura.lib.plugin:LocalAuthenticationProvider
+
+[allura.multifactor.recovery_code]
+filesystem-googleauth = allura.lib.multifactor:GoogleAuthenticatorPamFilesystemRecoveryCodeService
+mongodb = allura.lib.multifactor:MongodbRecoveryCodeService
+
+[allura.multifactor.totp]
+filesystem-googleauth = allura.lib.multifactor:GoogleAuthenticatorPamFilesystemTotpService
+mongodb = allura.lib.multifactor:MongodbTotpService
+
+[allura.personal_dashboard.sections]
+activity = allura.ext.personal_dashboard.dashboard_main:ActivitySection
+merge_requests = allura.ext.personal_dashboard.dashboard_main:MergeRequestsSection
+projects = allura.ext.personal_dashboard.dashboard_main:ProjectsSection
+tickets = allura.ext.personal_dashboard.dashboard_main:TicketsSection
+
+[allura.phone]
+nexmo = allura.lib.phone.nexmo:NexmoPhoneService
+
+[allura.project_registration]
+local = allura.lib.plugin:LocalProjectRegistrationProvider
+
+[allura.site_admin]
+stats = allura.controllers.site_admin:StatsSiteAdminExtension
+troves = allura.controllers.trovecategories:TroveCategorySiteAdminExtension
+
+[allura.spam]
+akismet = allura.lib.spam.akismetfilter:AkismetSpamFilter
+stopforumspam = allura.lib.spam.stopforumspamfilter:StopForumSpamSpamFilter
+
+[allura.theme]
+allura = allura.lib.plugin:ThemeProvider
+responsive = allura.lib.plugin:ResponsiveTheme
+
+[allura.theme.override]
+responsive = allura.templates_responsive.responsive_overrides:ResponsiveOverrides
+
+[allura.user_prefs]
+ldap = allura.lib.plugin:LdapUserPreferencesProvider
+local = allura.lib.plugin:LocalUserPreferencesProvider
+
+[allura.user_profile.sections]
+personal-data = allura.ext.user_profile.user_main:PersonalDataSection
+projects = allura.ext.user_profile.user_main:ProjectsSection
+skills = allura.ext.user_profile.user_main:SkillsSection
+social = allura.ext.user_profile.user_main:SocialSection
+tools = allura.ext.user_profile.user_main:ToolsSection
+
+[allura.webhooks]
+repo-push = allura.webhooks:RepoPushWebhookSender
+
+[easy_widgets.engines]
+jinja = allura.config.app_cfg:JinjaEngine
+
+[easy_widgets.resources]
+ew_resources = allura.config.resources:register_ew_resources
+
+[paste.app_factory]
+main = allura.config.middleware:make_app
+
+[paste.app_install]
+main = paste.script.appinstall:Installer
+
+[paste.paster_command]
+create-neighborhood = allura.command:CreateNeighborhoodCommand
+create-trove-categories = allura.command:CreateTroveCategoriesCommand
+ensure_index = allura.command:EnsureIndexCommand
+models = allura.command:ShowModelsCommand
+reclone-repo = allura.command.reclone_repo:RecloneRepoCommand
+reindex = allura.command:ReindexCommand
+script = allura.command:ScriptCommand
+set-neighborhood-features = allura.command:SetNeighborhoodFeaturesCommand
+set-tool-access = allura.command:SetToolAccessCommand
+smtp_server = allura.command:SMTPServerCommand
+task = allura.command.taskd:TaskCommand
+taskd = allura.command.taskd:TaskdCommand
+taskd_cleanup = allura.command.taskd_cleanup:TaskdCleanupCommand
+update-neighborhood-home-tool = allura.command:UpdateNeighborhoodCommand

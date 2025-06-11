@@ -1,0 +1,5 @@
+[allura]
+userstats = forgeuserstats.main:ForgeUserStatsApp
+
+[allura.stats]
+userstats = forgeuserstats.main:UserStatsListener

@@ -1,0 +1,14 @@
+[allura.admin]
+importers = forgeimporters.base:ImportAdminExtension
+
+[allura.importers]
+forge-discussion = forgeimporters.forge.discussion:ForgeDiscussionImporter
+forge-tracker = forgeimporters.forge.tracker:ForgeTrackerImporter
+github-repo = forgeimporters.github.code:GitHubRepoImporter
+github-tracker = forgeimporters.github.tracker:GitHubTrackerImporter
+github-wiki = forgeimporters.github.wiki:GitHubWikiImporter
+trac-tickets = forgeimporters.trac.tickets:TracTicketImporter
+
+[allura.project_importers]
+github = forgeimporters.github.project:GitHubProjectImporter
+trac = forgeimporters.trac.project:TracProjectImporter

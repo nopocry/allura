@@ -1,0 +1,6 @@
+[allura]
+SVN = forgesvn.svn_main:ForgeSVNApp
+
+[allura.timers]
+forgesvn = forgesvn.svn_main:forgesvn_timers
+svn = forgesvn.svn_main:svn_timers

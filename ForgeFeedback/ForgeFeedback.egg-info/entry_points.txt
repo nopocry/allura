@@ -1,0 +1,2 @@
+[allura]
+Feedback = forgefeedback.feedback_main:ForgeFeedbackApp

@@ -1,0 +1,21 @@
+Metadata-Version: 2.1
+Name: Allura
+Version: 0.1.dev0
+Summary: Base distribution of the Allura development platform
+Home-page: https://allura.apache.org/
+Author: Allura Team
+License: Apache License, http://www.apache.org/licenses/LICENSE-2.0
+Keywords: allura forge turbogears jinja2 mongodb
+Platform: Linux
+Platform: MacOS X
+Classifier: Development Status :: 4 - Beta
+Classifier: Environment :: Web Environment
+Classifier: Framework :: TurboGears
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Internet :: WWW/HTTP :: WSGI :: Application
+Classifier: License :: OSI Approved :: Apache Software License
+
+
+Allura is an open source implementation of a software "forge", a web site
+that manages source code repositories, bug reports, discussions, mailing
+lists, wiki pages, blogs and more for any number of individual projects.

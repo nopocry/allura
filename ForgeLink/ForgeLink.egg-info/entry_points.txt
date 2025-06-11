@@ -1,0 +1,2 @@
+[allura]
+Link = forgelink.link_main:ForgeLinkApp

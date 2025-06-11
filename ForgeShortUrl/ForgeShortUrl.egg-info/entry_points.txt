@@ -1,0 +1,2 @@
+[allura]
+ShortURL = forgeshorturl.main:ForgeShortUrlApp

@@ -1,0 +1,5 @@
+[allura]
+Chat = forgechat.main:ForgeChatApp
+
+[paste.global_paster_command]
+ircbot = forgechat.command:IRCBotCommand

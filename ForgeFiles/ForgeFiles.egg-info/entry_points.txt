@@ -1,0 +1,2 @@
+[allura]
+Files = forgefiles.files_main:FilesApp

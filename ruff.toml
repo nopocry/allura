@@ -1,0 +1,84 @@
+#       Licensed to the Apache Software Foundation (ASF) under one
+#       or more contributor license agreements.  See the NOTICE file
+#       distributed with this work for additional information
+#       regarding copyright ownership.  The ASF licenses this file
+#       to you under the Apache License, Version 2.0 (the
+#       "License"); you may not use this file except in compliance
+#       with the License.  You may obtain a copy of the License at
+#
+#         http://www.apache.org/licenses/LICENSE-2.0
+#
+#       Unless required by applicable law or agreed to in writing,
+#       software distributed under the License is distributed on an
+#       "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+#       KIND, either express or implied.  See the License for the
+#       specific language governing permissions and limitations
+#       under the License.
+
+line-length = 119
+output-format = "full"
+target-version = "py39"
+
+lint.select = [
+    # all flake8 & pep8 (except 'ignore' below)
+    "F",
+    "E",
+    "W6",  # some deprecation checks
+    "RUF100",  # unncessary noqa
+    "RUF013",  # implicit Optional (=None)
+    "ISC001",  # NIC001 in flake8 codes
+    "B",
+    "PGH",  # https://github.com/pre-commit/pygrep-hooks
+    "S", # bandit
+    "G010", # logging.warn
+    "T10",  # debugger breakpoints
+    "T20",  # print()
+    "PLC",
+    "PLE",
+    "PLW",
+    "SIM101",
+    "SIM117",
+    "SIM2",
+    "SIM401",
+    "FA",   # future annotations (to ensure compatibility with `target-version`)
+]
+
+lint.ignore = [
+    'F401', # Imported but unused,
+    'F811', # Redefinition of unused
+    'F841', # Assigned to but never used
+    'E731', # Do not assign a lambda expression, use a def
+    'E741', # Ambiguous variable name: I,
+    'E501', # Line too long
+    'B006', # Do not use mutable data structures for argument defaults
+    'B007', # Loop control variable not used within the loop body
+    'B904', # use raise from
+    'B905', # zip(strict=True) would be good, but need to closely evaluate all existing cases first
+    'S101', # assert
+    'S103', # permissive filesystem mask
+    'S104', # network binding, which doesn't apply to our code, and gives false-positive on test IPs
+    'S108', # temp files
+    'S110', # try-except-pass, too many exist already
+    'S303', # md5 & sha1
+    'S311', # random
+    'S324', # md5 & sha1
+    'S603', # subprocess
+    'S607', # partial path
+    'PLW2901', # loop var overwritten
+    'SIM103', #Return the condition `bool(raised and isinstance(raised, HTTPFound))` directly
+]
+
+[lint.per-file-ignores]
+'__init__.py' = ['F403']  # import *
+'{**/alluratest/*,**/tests/*,run_tests}' = [
+    'B011',  # assert False
+    'T20',  # print
+    'S105',  # hard-coded secrets
+    'S106',  # hard-coded secrets
+    'S107',  # hard-coded password
+    'S314',  # XML parsing
+    'S602',  # subprocess shell=True
+    'S604',  # other shell=True
+]
+'{scripts,Allura/allura/scripts,Allura/allura/command}/*' = ['T20']  # print
+'{fuse/accessfs.py,ForgeSVN/setup.py}' = ['T20']  # print

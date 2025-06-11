@@ -1,0 +1,6 @@
+[allura]
+Git = forgegit.git_main:ForgeGitApp
+
+[allura.timers]
+forgegit = forgegit.git_main:forgegit_timers
+git = forgegit.git_main:git_timers

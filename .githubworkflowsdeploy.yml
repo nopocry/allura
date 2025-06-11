@@ -1,0 +1,27 @@
+name: Allura Auto Deploy
+
+on:
+  push:
+    branches:
+      - main   # 如果你使用的是 master，请改成 master
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Connect to server and deploy
+      uses: appleboy/ssh-action@v1.0.0
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        key: ${{ secrets.SSH_PRIVATE_KEY }}
+        script: |
+          cd ${{ secrets.DEPLOY_PATH }}
+          echo "🔄 拉取最新代码"
+          git pull origin main
+          echo "🛠️ 重建容器"
+          docker compose down
+          docker compose build --no-cache
+          docker compose up -d
+          echo "✅ Allura 部署完成"
