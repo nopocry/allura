@@ -1,0 +1,11 @@
+# .gitignore
+# 忽略虚拟环境
+.venv/
+env/
+allura-data/virtualenv/
+__pycache__/
+*.pyc
+*.pyo
+*.log
+*.sqlite
+*.db
